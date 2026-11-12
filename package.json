@@ -1,0 +1,29 @@
+{
+  "name": "photo-ocr-to-word",
+  "version": "1.0.0",
+  "description": "Offline OCR for English, Bengali and Hindi photos with Word (.docx) output",
+  "author": "Photo OCR",
+  "main": "main.js",
+  "scripts": {
+    "prepare-libs": "node scripts/prepare.js",
+    "start": "npm run prepare-libs && electron .",
+    "dist": "npm run prepare-libs && electron-builder --win --publish never"
+  },
+  "build": {
+    "appId": "com.photoocr.app",
+    "productName": "Photo OCR to Word",
+    "files": ["main.js", "app/**/*"],
+    "win": { "target": ["nsis", "portable"] },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true },
+    "artifactName": "Photo-OCR-to-Word-${version}-${target}.${ext}"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8",
+    "tesseract.js": "5.1.1",
+    "docx": "9.8.1",
+    "@tesseract.js-data/eng": "*",
+    "@tesseract.js-data/ben": "*",
+    "@tesseract.js-data/hin": "*"
+  }
+}
